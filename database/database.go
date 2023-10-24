@@ -19,7 +19,7 @@ var Database = func () (db *gorm.DB){
 	dbPort := os.Getenv("DB_PORT")
 	dbName := os.Getenv("DB_NAME")
 	
-	dsn := username+":"+password+"@tcp("+dbHost+":"+dbPort+")/"+dbName+"?charset=utf8mb4"
+	dsn := username+":"+password+"@tcp("+dbHost+":"+dbPort+")/"+dbName+"?charset=utf8mb4&parseTime=true"
 	if db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{}); err != nil {
 		panic(err) 
 	}else{

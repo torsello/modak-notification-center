@@ -16,7 +16,7 @@ services:
     image: mysql:latest
     container_name: mysql-db
     environment:
-      MYSQL_ROOT_PASSWORD: lala1234
+      MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: notification_center
     ports:
       - "3306:3306"

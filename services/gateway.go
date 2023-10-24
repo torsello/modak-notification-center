@@ -1,9 +1,9 @@
 package services
 
-import "fmt"
+import "log"
 
 type Gateway struct{}
 
 func (gateway Gateway) Send(user, message string) {
-	fmt.Printf("sending message to user %s\n", user)
+	log.Printf("sending message to user %s\n", user)
 }
