@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    image: golang:latest
+    container_name: modak-notification-center
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    command: go run main.go
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: lala1234
+      MYSQL_DATABASE: notification_center
+    ports:
+      - "3306:3306"
+
