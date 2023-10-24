@@ -2,8 +2,8 @@ package models
 
 import (
 	"log"
-	"rate-limited-notification/database"
-	myUtils "rate-limited-notification/utils"
+	"modak-notification-center/database"
+	myUtils "modak-notification-center/utils"
 	"time"
 )
 

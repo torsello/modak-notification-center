@@ -1,4 +1,4 @@
-module rate-limited-notification
+module modak-notification-center
 
 go 1.21
 

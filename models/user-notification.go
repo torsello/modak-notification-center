@@ -2,7 +2,7 @@ package models
 
 import (
 	"log"
-	"rate-limited-notification/database"
+	"modak-notification-center/database"
 	"time"
 )
 

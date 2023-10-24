@@ -2,10 +2,10 @@ package main
 
 import (
 	"log"
+	"modak-notification-center/handlers"
+	"modak-notification-center/middleware"
+	"modak-notification-center/models"
 	"net/http"
-	"rate-limited-notification/handlers"
-	"rate-limited-notification/middleware"
-	"rate-limited-notification/models"
 
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"

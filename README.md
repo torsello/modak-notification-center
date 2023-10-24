@@ -1,1 +1,1 @@
-# rate-limited-notification
+# modak-notification-center

@@ -2,9 +2,9 @@ package services
 
 import (
 	"log"
-	"rate-limited-notification/database"
-	"rate-limited-notification/models"
-	myUtils "rate-limited-notification/utils"
+	"modak-notification-center/database"
+	"modak-notification-center/models"
+	myUtils "modak-notification-center/utils"
 	"strings"
 	"sync"
 	"time"

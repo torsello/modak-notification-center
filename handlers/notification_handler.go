@@ -2,10 +2,10 @@ package handlers
 
 import (
 	"encoding/json"
+	"modak-notification-center/dto"
 	"net/http"
-	"rate-limited-notification/dto"
 
-	"rate-limited-notification/services"
+	"modak-notification-center/services"
 )
 
 
