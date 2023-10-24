@@ -1,0 +1,103 @@
+[
+    {
+        "type": "status",
+        "receiver": "axxamatias@gmail.com",
+        "message": "Hi, rubber duck"
+    },
+    {
+        "type": "status",
+        "receiver": "example1@gmail.com",
+        "message": "Hello there!"
+    },
+    {
+        "type": "status",
+        "receiver": "user123@yahoo.com",
+        "message": "Greetings!"
+    },
+    {
+        "type": "status",
+        "receiver": "testuser@hotmail.com",
+        "message": "Hey, how are you?"
+    },
+    {
+        "type": "status",
+        "receiver": "sampleuser@outlook.com",
+        "message": "Hi, friend!"
+    },
+    {
+        "type": "status",
+        "receiver": "user567@gmail.com",
+        "message": "How's it going?"
+    },
+    {
+        "type": "status",
+        "receiver": "newuser@yahoo.com",
+        "message": "Nice to meet you!"
+    },
+    {
+        "type": "status",
+        "receiver": "randomuser@hotmail.com",
+        "message": "What's up?"
+    },
+    {
+        "type": "status",
+        "receiver": "emailuser@outlook.com",
+        "message": "Hello, world!"
+    },
+    {
+        "type": "status",
+        "receiver": "anotheruser@gmail.com",
+        "message": "Greetings from afar!"
+    },
+    {
+        "type": "status",
+        "receiver": "user99@yahoo.com",
+        "message": "Hi there!"
+    },
+    {
+        "type": "status",
+        "receiver": "testaccount@hotmail.com",
+        "message": "How's your day?"
+    },
+    {
+        "type": "status",
+        "receiver": "myemail@outlook.com",
+        "message": "Hello, my friend!"
+    },
+    {
+        "type": "status",
+        "receiver": "uniqueuser@gmail.com",
+        "message": "Nice to see you!"
+    },
+    {
+        "type": "status",
+        "receiver": "specialrecipient@yahoo.com",
+        "message": "Greetings to you!"
+    },
+    {
+        "type": "status",
+        "receiver": "recipient1@gmail.com",
+        "message": "Hello, world!"
+    },
+    {
+        "type": "status",
+        "receiver": "recipient2@yahoo.com",
+        "message": "Hi there!"
+    },
+    {
+        "type": "status",
+        "receiver": "recipient3@hotmail.com",
+        "message": "Greetings!"
+    },
+    {
+        "type": "status",
+        "receiver": "recipient4@outlook.com",
+        "message": "How's it going?"
+    },
+    {
+        "type": "status",
+        "receiver": "recipient5@gmail.com",
+        "message": "Nice to meet you!"
+    }
+]
+
