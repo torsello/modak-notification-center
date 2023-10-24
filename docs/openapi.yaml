@@ -82,10 +82,10 @@ components:
             example: "status"
           receiver:
             type: string
-            example: "axxamatias@gmail.com"
+            example: "test@gmail.com"
           message:
             type: string
-            example: "Hola Manola"
+            example: "Hi, Rubber duck"
     NotificationResponse:
       type: array
       items:
@@ -96,10 +96,10 @@ components:
             example: "status"
           receiver:
             type: string
-            example: "axxamatias@gmail.com"
+            example: "test@gmail.com"
           message:
             type: string
-            example: "Hola Manola"
+            example: "Hi, Rubber duck"
           status:
             type: string
             example: "successful"
