@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Swagger Modak Notification Center - OpenAPI 3.0
+  description: |-
+    This service is in charge of managing user notifications; when we receive a request, we assume that the user already exists.
+    All the notifications that are configured in the database will be validated with the notifications received by the user.
+    If a notification is not found, we still send it, this way if a configuration is missing, we do not block the alerts.
+    
+    Some useful links:
+    - [Modak Notificacion Center Repository](https://github.com/torsello/modak-notification-center)
+   
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://localhost:8080/api/v1
+tags:
+  - name: Notifications
+    description: Operations about notifications
+    externalDocs:
+      description: Find out more
+      url: https://github.com/torsello/modak-notification-center
+paths:
+  /notification:
+    post:
+      tags:
+        - notification
+      summary: Send a new notification
+      description: Send a new notification to a user
+      operationId: addNotification
+      requestBody:
+        description: Send a new notification to a user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Notification'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Notification'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/NotificationResponse'
+        '404-1':
+          description: Required field is missing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestFieldMissing' 
+        '404-2':
+          description: Error matching request with dto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestUnnexpected' 
+components:
+  schemas:
+    Notification:
+      type: array
+      items:
+        type: object
+        properties:
+          type:
+            type: string
+            example: "status"
+          receiver:
+            type: string
+            example: "axxamatias@gmail.com"
+          message:
+            type: string
+            example: "Hola Manola"
+    NotificationResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          type:
+            type: string
+            example: "status"
+          receiver:
+            type: string
+            example: "axxamatias@gmail.com"
+          message:
+            type: string
+            example: "Hola Manola"
+          status:
+            type: string
+            example: "successful"
+    BadRequestFieldMissing:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "error"
+        code:
+          type: string
+          example: "000.000.001"
+        exception:
+          type: string
+          example: "required_field_is_missing"
+    BadRequestUnnexpected:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "error"
+        code:
+          type: string
+          example: "000.000.000"
+        exception:
+          type: string
+          example: "unexpected_issue"
