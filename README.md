@@ -129,7 +129,7 @@ go test .
 ## Troubleshooting:
 - If you use docker compose, make sure you do not have a mysql service running on your pc listening on port 3306, docker creates a container listening on this port. 
 ## Swagger documentation:
-You can find it in
+You can find it at
 ```bash
 docs/openapi.yaml
 ```
