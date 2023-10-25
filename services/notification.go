@@ -24,19 +24,18 @@ func (service NotificationServiceImpl) Send(typeName, user, message string) bool
 	wg := &sync.WaitGroup{}
 
 	rateLimitChan := make(chan models.RateLimitCfg)
-	errorChan := make(chan error)
 	
 	userNotificationsChan := make(chan models.UserNotifications)
 	errorUserNotificationChan := make(chan error)
 
 	wg.Add(2)
-	go getRateLimitCfg(typeName, rateLimitChan, errorChan, wg)
+	go getRateLimitCfg(typeName, rateLimitChan, wg)
 	rateLimitCfg := <- rateLimitChan
 	go checkForNotifications(typeName, user, rateLimitCfg, userNotificationsChan, errorUserNotificationChan, wg)
 	wg.Wait()
 	
 	userNotifications := <- userNotificationsChan
-	if len(userNotifications) < rateLimitCfg.MaxLimit {
+	if len(userNotifications) < rateLimitCfg.MaxLimit || rateLimitCfg.Id <= 0 {
 		saveNotification(typeName, user, message)
 		service.Gateway.Send(user, message)
 		sentOk = true
@@ -45,7 +44,7 @@ func (service NotificationServiceImpl) Send(typeName, user, message string) bool
 	return sentOk
 }
 
-func getRateLimitCfg(typeName string, resultChan chan<- models.RateLimitCfg, errorChan chan<- error, wg *sync.WaitGroup) {
+func getRateLimitCfg(typeName string, resultChan chan<- models.RateLimitCfg, wg *sync.WaitGroup) {
 	rateLimitCfg := models.RateLimitCfg{}
     if database.Database.Where("type = ?", typeName).Where("active = ?", true).Limit(1).Find(&rateLimitCfg).RowsAffected == 0 {
 		log.Println("CFG for "+ typeName + " not exists, we proceed to send the notification without limit")
@@ -56,19 +55,22 @@ func getRateLimitCfg(typeName string, resultChan chan<- models.RateLimitCfg, err
 
 func checkForNotifications(typeName string, user string, rateLimitCfg models.RateLimitCfg, resultChan chan<- models.UserNotifications, errorChan chan<- error, wg *sync.WaitGroup) {
 	userNotifications := models.UserNotifications{}
-	validationDate := myUtils.GetValidationDate(time.Now().UTC(), strings.ToLower(rateLimitCfg.TimeInterval))
 
-	if err := database.Database.
+	if rateLimitCfg.Id > 0 {
+		validationDate := myUtils.GetValidationDate(time.Now().UTC(), strings.ToLower(rateLimitCfg.TimeInterval))
+		if err := database.Database.
 		Where("type = ? AND user = ? AND delivery_date > ?", typeName, user, validationDate).
 		Order("delivery_date DESC").
 		Limit(rateLimitCfg.MaxLimit).
 		Find(&userNotifications).
         Error; err != nil {
-		wg.Done()
-		errorChan <- err
-		close(resultChan)
-        return
-    }
+			wg.Done()
+			errorChan <- err
+			close(resultChan)
+			return
+    	}
+	}
+
 	wg.Done()
     resultChan <- userNotifications
 }

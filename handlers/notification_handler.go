@@ -11,31 +11,38 @@ import (
 
 func SendNotification(response http.ResponseWriter, request *http.Request)  {
 	response.Header().Set("Content-Type", "application/json")
-	var notifications dto.NotificationsDto
 
-	if err := json.NewDecoder(request.Body).Decode(&notifications); err != nil {
+	var notificationsData dto.DataRequest
+
+	if err := json.NewDecoder(request.Body).Decode(&notificationsData); err != nil {
 		response.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(response).Encode(map[string]string{
-			"status":"error",
-			"code": "000.000.000",
-			"exception": "unnexpected_issue",
-		})
+		json.NewEncoder(response).Encode(map[string]interface{}{
+				"data": map[string]string{
+					"status":    "error",
+					"code":      "000.000.000",
+					"exception": "unnexpected_issue",
+				},
+			})
 		return
 	}
+
+	notifications := notificationsData.Data.Notifications
 
 	for _, notification := range notifications {
 		if notification.Type == "" || notification.Receiver == "" || notification.Message == "" {
 			response.WriteHeader(http.StatusBadRequest)
-			json.NewEncoder(response).Encode(map[string]string{
-				"status": "error",
-				"code": "000.000.001",
-				"exception": "required_field_is_missing",
+			json.NewEncoder(response).Encode(map[string]interface{}{
+				"data": map[string]string{
+					"status": "error",
+					"code": "000.000.001",
+					"exception": "required_field_is_missing",
+				},
 			})
 			return
 		}
 	}
 
-	var responseDto dto.NotificationsResponseDto
+	var responseDto dto.DataResponse
 	service := services.NotificationServiceImpl{Gateway: services.Gateway{}}
 	
 	for _, notification := range notifications {
@@ -46,7 +53,7 @@ func SendNotification(response http.ResponseWriter, request *http.Request)  {
 			status = "successful"
 		}
 
-		responseDto = append(responseDto, dto.NotificationResponseDto{
+		responseDto.Data.Notifications = append(responseDto.Data.Notifications, dto.NotificationResponseDto{
 			Type: notification.Type,
 			Receiver: notification.Receiver,
 			Message: notification.Message,

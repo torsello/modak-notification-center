@@ -5,10 +5,10 @@ info:
     This service is in charge of managing user notifications; when we receive a request, we assume that the user already exists.
     All the notifications that are configured in the database will be validated with the notifications received by the user.
     If a notification is not found, we still send it, this way if a configuration is missing, we do not block the alerts.
-    
+
     Some useful links:
     - [Modak Notificacion Center Repository](https://github.com/torsello/modak-notification-center)
-   
+
   termsOfService: http://swagger.io/terms/
   contact:
     email: apiteam@swagger.io
@@ -40,90 +40,110 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Notification'
+              $ref: "#/components/schemas/Notification"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Notification'
+              $ref: "#/components/schemas/Notification"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Notification'
+              $ref: "#/components/schemas/Notification"
         required: true
       responses:
-        '200':
+        "200":
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotificationResponse'          
+                $ref: "#/components/schemas/NotificationResponse"
             application/xml:
               schema:
-                $ref: '#/components/schemas/NotificationResponse'
-        '404-1':
+                $ref: "#/components/schemas/NotificationResponse"
+        "404-1":
           description: Required field is missing
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BadRequestFieldMissing' 
-        '404-2':
+                $ref: "#/components/schemas/BadRequestFieldMissing"
+        "404-2":
           description: Error matching request with dto
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BadRequestUnnexpected' 
+                $ref: "#/components/schemas/BadRequestUnnexpected"
 components:
   schemas:
     Notification:
-      type: array
-      items:
-        type: object
-        properties:
-          type:
-            type: string
-            example: "status"
-          receiver:
-            type: string
-            example: "test@gmail.com"
-          message:
-            type: string
-            example: "Hi, Rubber duck"
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            notifications:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: news
+                  receiver:
+                    type: string
+                    format: email
+                    example: test@test.com
+                  message:
+                    type: string
+                    example: New products are waiting for you
     NotificationResponse:
-      type: array
-      items:
-        type: object
-        properties:
-          type:
-            type: string
-            example: "status"
-          receiver:
-            type: string
-            example: "test@gmail.com"
-          message:
-            type: string
-            example: "Hi, Rubber duck"
-          status:
-            type: string
-            example: "successful"
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            notifications:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: news
+                  receiver:
+                    type: string
+                    format: email
+                    example: test@test.com
+                  message:
+                    type: string
+                    example: New products are waiting for you
+                  status:
+                    type: string
+                    example: successfull
     BadRequestFieldMissing:
       type: object
       properties:
-        status:
-          type: string
-          example: "error"
-        code:
-          type: string
-          example: "000.000.001"
-        exception:
-          type: string
-          example: "required_field_is_missing"
+        data:
+          type: object
+          properties:
+            status:
+              type: string
+              example: "error"
+            code:
+              type: string
+              example: "000.000.001"
+            exception:
+              type: string
+              example: "required_field_is_missing"
     BadRequestUnnexpected:
       type: object
       properties:
-        status:
-          type: string
-          example: "error"
-        code:
-          type: string
-          example: "000.000.000"
-        exception:
-          type: string
-          example: "unexpected_issue"
+        data:
+          type: object
+          properties:
+            status:
+              type: string
+              example: "error"
+            code:
+              type: string
+              example: "000.000.000"
+            exception:
+              type: string
+              example: "unexpected_issue"

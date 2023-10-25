@@ -16,3 +16,19 @@ type NotificationResponseDto struct {
 }
 
 type NotificationsResponseDto []NotificationResponseDto
+
+type DataResponseNotifications struct {
+	Notifications NotificationsResponseDto `json:"notifications"`
+}
+
+type DataResponse struct {
+	Data DataResponseNotifications `json:"data"`
+}
+
+type Data struct {
+	Notifications NotificationsDto `json:"notifications"`
+}
+
+type DataRequest struct {
+	Data Data `json:"data"`
+}

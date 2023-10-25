@@ -1,28 +1,31 @@
-[
-    {
+{
+  "data": {
+    "notifications": [
+      {
         "type": "status",
         "receiver": "axxamatias@gmail.com",
         "message": "Hi, rubber duck"
-    },
-    {
+      },
+      {
         "type": "status",
         "receiver": "example1@gmail.com",
         "message": "Hello there!"
-    },
-    {
+      },
+      {
         "type": "status",
         "receiver": "user123@yahoo.com",
         "message": "Greetings!"
-    },
-    {
+      },
+      {
         "type": "status",
         "receiver": "testuser@hotmail.com",
         "message": "Hey, how are you?"
-    },
-    {
+      },
+      {
         "type": "status",
         "receiver": "sampleuser@outlook.com",
         "message": "Hi, friend!"
-    }
-]
-
+      }
+    ]
+  }
+}

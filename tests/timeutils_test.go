@@ -1,6 +1,7 @@
-package timeutils
+package tests
 
 import (
+	myUtils "modak-notification-center/utils"
 	"testing"
 	"time"
 )
@@ -21,7 +22,7 @@ func TestGetValidationDate(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.unit, func(t *testing.T) {
-			result := GetValidationDate(referenceTime, test.unit)
+			result := myUtils.GetValidationDate(referenceTime, test.unit)
 			if !result.Equal(test.expected) {
 				t.Errorf("For the time unit %s, %v was expected but %v was obtained", test.unit, test.expected, result)
 			}
