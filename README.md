@@ -168,7 +168,7 @@ You can find it at
 docs/openapi.yaml
 ```
 
-and also [here](https://app.swaggerhub.com/apis/MATIASTORSELLO/modak-notification-center/1.0.0)
+and also [here](https://app.swaggerhub.com/apis/MATIASTORSELLO/modak-notification-center/1.0.1)
 
 ## Postman collection:
 
