@@ -126,6 +126,14 @@ To start all tests you must use:
 go test .
 ```
 
+## Stress Testing
+
+These tests were performed with Apache Benchmark on macOS on a server with the following characteristics:
+- Processor: Intel Core i7 2.6GHz (Quad Core)
+- RAM: 16 GB 2133 MHz
+
+You can see the evidence [here](https://github.com/torsello/modak-notification-center/blob/main/docs/Stress%20testing%20-%20modak-notification-center.pdf)
+
 ## Troubleshooting:
 - If you use docker compose, make sure you do not have a mysql service running on your pc listening on port 3306, docker creates a container listening on this port. 
 ## Swagger documentation:
