@@ -157,6 +157,8 @@ You can see the evidence [here](https://github.com/torsello/modak-notification-c
 ## Troubleshooting:
 
 - If you use docker compose, make sure you do not have a mysql service running on your pc listening on port 3306, docker creates a container listening on this port.
+- If you use docker compose, note that the Go service does not start until the database is 100% online.
+  This may take about 1 minute.
 
 ## Swagger documentation:
 
