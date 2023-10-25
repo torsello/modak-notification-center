@@ -102,6 +102,22 @@ Response example:
     }
 ]
 ```
+## Server cfg
+
+If you want to make some changes about the database connection, you should modify:
+
+```bash
+.env
+```
+```bash
+DB_NAME=
+DB_USERNAME=
+DB_PASSWORD=
+DB_HOST=
+DB_PORT=
+```
+These values are exposed here for testing purposes, normally they would go in environment variables of the system where they are deployed.
+
 ## Unit Testing
 
 To start all tests you must use:
